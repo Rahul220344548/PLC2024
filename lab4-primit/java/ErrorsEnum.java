@@ -93,5 +93,8 @@ public class ErrorsEnum
         
         Error e = getEnumElement("error", Error.class);
         System.out.println(e + " results in: " + error2Result(e));
+
+        Result r = getEnumElement("result", Result.class); // Added to demonstrate result2Error usage
+        System.out.println(r + " results from: " + result2Error(r)); // New print statement
     }
 }
