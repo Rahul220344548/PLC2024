@@ -32,7 +32,7 @@ public class ErrorsEnum
         return result;
     }
   
-    private static Result error2Result(Error e)
+        private static Result error2Result(Error e) 
     {
         Result result = null;
         
@@ -54,12 +54,40 @@ public class ErrorsEnum
         return result;
     }
 
+    private static Error result2Error(Result r) // 2. Added new method
+    {
+        Error error = null;
+        
+        switch (r) {
+            case A_BIT_DIFFERENT:
+                error = Error.FP_ROUNDING;
+                break;
+            case INFINITY:
+                error = Error.FP_OVERFLOW;
+                break;
+            case ZERO:
+                error = Error.FP_UNDERFLOW;
+                break;
+            case VERY_DIFFERENT:
+                error = Error.INT_OVERFLOW;
+                break;
+        }
+        
+        return error;
+    }
     public static void main(String[] args)
     {
         System.out.print("Known errors = ");
         for (Error e : EnumSet.allOf(Error.class)) 
         {
             System.out.print(e + " ");
+        }
+        System.out.println();
+        
+        System.out.print("Known results = "); // 4. Adjusted print statement
+        for (Result r : EnumSet.allOf(Result.class))
+        {
+            System.out.print(r + " ");
         }
         System.out.println();
         
