@@ -9,11 +9,10 @@ data Product
         , product_brand :: String
         }
     deriving (Eq)
-
+-- Methods Check
 instance Show Product where 
     show (Product name brand) = 
         printf "%s by %s" name brand
-
 data Item
     = Piece
         {
@@ -27,10 +26,11 @@ data Item
             item_length_secs :: Float
         }
     deriving (Eq)
-
+-- Methods Check
 isAdvert (Advert _ _) = True
 isAdvert _ = False
 
+-- Function ItemOK 
 itemOK (Piece _ _ len) = 0 < len && len < 36000
 itemOK (Advert _ len) = 0 < len && len < 120
 
@@ -55,9 +55,19 @@ playlist2 = [piece2, advert1]
 
 playlists = [playlist1, playlist2] -- a list of lists
 
-adsFromPlaylists = "todo" -- TASK 6.4(b)
 
-shortItemLenghts1 = "todo" -- TASK 6.4(a)
+-- Write a two-level list comprehension that constructs a list of all advertisements that
+-- occur inside the multiple playlists in the variable playlists. Your comprehension
+-- must depend on the global variable playlists, and no other global variable. 
+
+adsFromPlaylists = [item | list <- playlists, item <- list, isAdvert item]  -- TASK 6.4(b)
+rintf "playlist1noAds = %s\n" (show playlist1noAds)
+
+-- Write a list comprehension that constructs a list of all pieces that are stored (among
+-- other values) in the list in variable things. The comprehension must work according
+-- to this specification no matter what the content of the variable things is. 
+shortItemLenghts1 = [item_length_secs item | item <- playlist1, item_length_secs item < 20] 
+
 
 main =
     do
