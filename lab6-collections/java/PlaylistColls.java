@@ -106,6 +106,8 @@ public class PlaylistColls {
         for(Item item: playlist1) {
             if(item.length_secs < 20) {
                 shortItemLengths1.add(item.length_secs);
+            }else {
+                System.out.print("NULL");
             }
         }
     
